@@ -1,0 +1,34 @@
+.addTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__block {
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    height: 30px;
+    margin-left: 15px;
+    border-radius: 15px;
+    text-align: center;
+
+    &::placeholder {
+      text-align: center;
+    }
+  }
+
+  &__button {
+    height: 50px;
+    padding: 15px 35px;
+    border-radius: 15px;
+    font-weight: bold;
+    width: fit-content;
+    text-transform: uppercase;
+
+    &--none {
+      display: none;
+    }
+  }
+}
