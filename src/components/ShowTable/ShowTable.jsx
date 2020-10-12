@@ -2,38 +2,75 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './showTable.scss';
 
-export const ShowTable = ({ table, average, amountClick }) => (
+export const ShowTable = ({
+  table,
+  average,
+  amountClick,
+  removeRow,
+  hoverAmount,
+  endHoverAmount,
+  showProcent,
+  endShowProcent,
+}) => (
   <div
-    className="showTable"
+    className={table.length > 0
+      ? `showTable`
+      : `showTable--none`}
   >
     <ul
       className="showTable__list"
     >
-      {table.map(row => (
+      {table.map((row, i) => (
         <li
           className="showTable__item"
           key={Math.random()}
         >
-          <div
-            className="showTable__row"
-          >
-            {row.map(show => (
+          {row.map(show => (
+            <div
+              className="showTable__row"
+              key={Math.random()}
+            >
               <button
                 type="button"
-                key={show.id}
                 value={show.id}
-                className="showTable__amount"
+                className={!show.hover ? 'showTable__amount'
+                  : 'showTable__amount showTable__amount--near'}
+                onMouseEnter={event => hoverAmount(event)}
+                onMouseLeave={() => endHoverAmount()}
                 onClick={event => amountClick(event)}
               >
-                {show.amount}
+                {!show.showProcent ? show.amount : `${show.procent} %`}
+
+                <div
+                  style={{
+                    height: `${+show.procent}%`,
+                  }}
+                  className={!show.showProcent ? 'showTable__procent--none'
+                    : 'showTable__procent'}
+                >
+                  .
+                </div>
               </button>
-            ))}
-          </div>
+            </div>
+          ))}
           <span
             className="showTable__sum"
+            id={i}
+            onMouseEnter={event => showProcent(event)}
+            onMouseLeave={() => endShowProcent()}
           >
             {row.reduce((acc, current) => acc + current.amount, 0)}
           </span>
+          <div>
+            <button
+              className="showTable__remove"
+              type="button"
+              value={i}
+              onClick={event => removeRow(event)}
+            >
+              X
+            </button>
+          </div>
         </li>
       ))}
       <li
@@ -54,6 +91,13 @@ export const ShowTable = ({ table, average, amountClick }) => (
 
 ShowTable.propTypes = {
   amountClick: PropTypes.func.isRequired,
-  table: PropTypes.arrayOf().isRequired,
-  average: PropTypes.arrayOf().isRequired,
+  table: PropTypes.arrayOf(
+    PropTypes.arrayOf(PropTypes.object),
+  ).isRequired,
+  average: PropTypes.arrayOf(PropTypes.string).isRequired,
+  removeRow: PropTypes.func.isRequired,
+  hoverAmount: PropTypes.func.isRequired,
+  endHoverAmount: PropTypes.func.isRequired,
+  showProcent: PropTypes.func.isRequired,
+  endShowProcent: PropTypes.func.isRequired,
 };

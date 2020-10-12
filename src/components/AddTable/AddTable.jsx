@@ -14,7 +14,7 @@ export const AddTable = ({ table, createTable, addRow }) => {
       <div
         className="addTable__block"
       >
-        <h1 className="addTable__headind">Columns = </h1>
+        <h1 className="addTable__heading">Columns = </h1>
         <input
           className="addTable__input"
           type="number"
@@ -24,12 +24,8 @@ export const AddTable = ({ table, createTable, addRow }) => {
           onChange={event => createM(event.target.value)}
           placeholder="M"
         />
-      </div>
 
-      <div
-        className="addTable__block"
-      >
-        <h1 className="addTable__headind">Rows = </h1>
+        <h1 className="addTable__heading">Rows = </h1>
         <input
           className="addTable__input"
           type="number"
@@ -63,7 +59,9 @@ export const AddTable = ({ table, createTable, addRow }) => {
 };
 
 AddTable.propTypes = {
-  table: PropTypes.arrayOf().isRequired,
+  table: PropTypes.arrayOf(
+    PropTypes.arrayOf(PropTypes.object),
+  ).isRequired,
   createTable: PropTypes.func.isRequired,
   addRow: PropTypes.func.isRequired,
 };
