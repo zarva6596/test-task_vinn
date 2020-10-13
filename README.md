@@ -1,14 +1,23 @@
-# React static list of TODOs
-- Replace `<your_account>` with your Github username in the
-  [DEMO LINK](https://<your_account>.github.io/react_static-list-of-todos/)
-- Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
+[DEMO LINK](https://zarva6596.github.io/test-task_vinn/)
 
-## Task
-By using [todos.js](./src/api/todos.js) and [users.js](./src/api/users.js) as
-modules to your React application, create and display a list of all the TODO
-items. Alongside each item display information about the user it belongs to.
+Технические условия
+Использовать react + redux
+Входящие параметры
+Числа M, N, X
 
-1. Create a `preparedTodos` array of `todos` with a `user` property added to each `todo`. Place it in the `App.js`
-1. Create a component `TodoList` accepting an array of `preparedTodos` and displaying them as a list
-1. Create a component `Todo` accepting a `todo` object and displaying its name, `completed` status and `User`
-1. Create a component `User` accepting a `user` object and displaying its name with some styling
+Подготовка
+Создать матрицу M*N (строчки, колонки)
+Значение места пресечения — объект с уникальным идентификатором ID и количеством Amount: int (3-х значный рандом)
+Найти сумму по каждой строчке M и среднее по каждому столбику N
+
+Вывод таблицы
+Вывести результирующие данные в таблицу с хорошим UX. В основных ячейках таблицы выводится Amount, ранее автоматически сгенерированный, справа сумма по строкам M, снизу — среднее по столбцам N.
+
+Динамика ячеек
+При нажатии на ячейку увеличивать значение Amount на 1 и соответственно менять среднее этого столбика и сумму этой строки
+При наведении на ячейку подсветить X ячеек, Amount которых самый близкий к Amount текущей ячейки.
+При наведении на ячейку суммы по строчке необходимо заменять значение ячеек на процент их вклада в общую сумму и добавить фон: столбик, который наглядно покажет величину процента. Фактически закрасить часть ячейки.
+
+Динамика строк
+Дать возможность удалить строку с таблицы, при этом должны поменяться средние значения по каждому столбику
+Дать возможность добавить строку, фактически M+1. При этом строка заполняется по всем правилам таблицы.
