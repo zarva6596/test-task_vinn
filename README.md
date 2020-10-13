@@ -1,4 +1,4 @@
-[DEMO LINK](https://zarva6596.github.io/test-task_vinn/)
+[DEMO LINK](https://zarva6596.github.io/test-task_vinn/).
 
 Технические условия
 Использовать react + redux
